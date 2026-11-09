@@ -1,0 +1,13 @@
+{% extends "projetos_iniciais/base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+  <div class="page-header">
+    <h1>Adicionar tópico</h1>
+  </div>
+
+  <form action="{% url 'new_topic' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-primary" name="submit" type="submit">Adicionar</button>
+  </form>
+{% endblock content %}

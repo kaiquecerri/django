@@ -1,0 +1,17 @@
+{% extends "projetos_iniciais/base.html" %} 
+
+{% block content %}
+  <div class="page-header">
+    <h1>Tópicos</h1>
+  </div>
+
+  <div class="list-group">
+    {% for topic in topics %}
+      <a class="list-group-item" href="{% url 'topic' topic.id %}">{{ topic }}</a>
+    {% empty %}
+      <div class="list-group-item text-muted">Não há tópicos adicionados.</div>
+    {% endfor %}
+  </div>
+
+  <a class="btn btn-primary" href="{% url 'new_topic' %}">Adicionar tópico</a>
+{% endblock content %}

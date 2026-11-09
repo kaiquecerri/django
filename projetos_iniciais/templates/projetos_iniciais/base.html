@@ -1,0 +1,53 @@
+{% load bootstrap3 %}
+
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aplicação para anotações" />
+    <title>Projetos</title>
+
+    {% bootstrap_css %} {% bootstrap_javascript %}
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button
+            class="navbar-toggle collapsed"
+            type="button"
+            data-toggle="collapse"
+            data-target="#items"
+            aria-controls="items"
+            aria-expanded="false"
+            aria-label="Abrir ou fechar navegação"
+          >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="{% url 'index' %}" class="navbar-brand">Home</a>
+        </div>
+
+        <div id="items" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'topics' %}">Tópicos</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li><p class="navbar-text">Olá, {{ user.username }}</p></li>
+            <li><a href="{% url 'logout' %}">Sair</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Entrar</a></li>
+            <li><a href="{% url 'register' %}">Criar conta</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="container">
+      {% block content %}{% endblock content %}
+    </main>
+  </body>
+</html>

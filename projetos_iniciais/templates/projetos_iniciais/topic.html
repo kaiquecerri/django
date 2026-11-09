@@ -1,0 +1,23 @@
+{% extends "projetos_iniciais/base.html" %} 
+
+{% block content %}
+  <div class="page-header">
+    <h1>{{ topic }}</h1>
+  </div>
+
+  <p>
+    <a class="btn btn-primary" href="{% url 'new_entry' topic.id %}">Nova entrada</a>
+  </p>
+
+  {% for entry in entries %}
+    <article class="panel panel-default">
+      <div class="panel-heading">{{ entry.date_added|date:'M d, Y H:i' }}</div>
+      <div class="panel-body">
+        {{ entry.text|linebreaks }}
+        <a class="btn btn-default btn-sm" href="{% url 'edit_entry' entry.id %}">Editar</a>
+      </div>
+    </article>
+  {% empty %}
+    <div class="alert alert-info" role="status">Nenhuma entrada neste tópico.</div>
+  {% endfor %}
+{% endblock content %}
